@@ -12,21 +12,21 @@ open fails when-
 int main(){
     // file does not exist
     if (open("./nonExistentFile.txt", O_RDONLY) == -1){
-        printf("errno: %d\n", errno);
         perror("open failed");
+        printf("errno: %d\n", errno);
         // fprintf(stderr, "open failed");
     }
     // access denied (change the file permissions for threefds.c before execution)
     if (open("./threefds.c", O_RDONLY) == -1){
-        printf("errno: %d\n", errno);
         perror("open failed");
+        printf("errno: %d\n", errno);
     }
     // try reaching fd count limit by opening same file repeatedly (chatgpt cooked this)
     errno = 0;
     while(open("./openfails.c", O_RDONLY) != -1);
     if(errno){
-        printf("errno: %d\n", errno);
         perror("open failed");
+        printf("errno: %d\n", errno);
     }
     return 0;
 }
